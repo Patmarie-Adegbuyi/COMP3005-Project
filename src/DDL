@@ -1,0 +1,145 @@
+CREATE TABLE Member (
+    memberID SERIAL PRIMARY KEY,
+    firstName VARCHAR(50),
+    lastName VARCHAR(50),
+    email VARCHAR(100) UNIQUE,
+    password VARCHAR(255),
+    date_of_birth DATE,
+    gender VARCHAR(15),
+    phoneNumber VARCHAR(20)
+);
+
+CREATE TABLE FitnessGoal (
+    goalID SERIAL PRIMARY KEY,
+    memberID INT,
+    goalDescription VARCHAR(255),
+    targetDate DATE,
+    FOREIGN KEY (memberID) REFERENCES Member(memberID)
+);
+
+CREATE TABLE HealthMetrics (
+    metricID SERIAL PRIMARY KEY,
+    memberID INT,
+    weight DECIMAL(5, 2),
+    height DECIMAL(5, 2),
+    bmi DECIMAL(5, 2),
+    bodyFatPercentage DECIMAL(5, 2),
+    measurementDate DATE,
+    FOREIGN KEY (memberID) REFERENCES Member(memberID)
+);
+
+CREATE TABLE Trainer (
+    trainerID SERIAL PRIMARY KEY,
+    firstName VARCHAR(50),
+    lastName VARCHAR(50),
+    email VARCHAR(100) UNIQUE,
+    phoneNumber VARCHAR(20)
+);
+
+CREATE TABLE TrainingSession (
+    sessionID SERIAL PRIMARY KEY,
+    memberID INT,
+    trainerID INT,
+    sessionDate TIMESTAMP,
+    durationMinutes INT,
+    sessionNotes TEXT,
+    FOREIGN KEY (memberID) REFERENCES Member(memberID),
+    FOREIGN KEY (trainerID) REFERENCES Trainer(trainerID)
+);
+
+CREATE TABLE Class (
+    classID SERIAL PRIMARY KEY,
+    className VARCHAR(100),
+    description TEXT,
+    scheduleDay VARCHAR(15),
+    startTime TIME,
+    endTime TIME
+);
+
+CREATE TABLE MemberClassRegistration (
+    registrationID SERIAL PRIMARY KEY,
+    memberID INT,
+    classID INT,
+    registrationDate DATE,
+    FOREIGN KEY (memberID) REFERENCES Member(memberID),
+    FOREIGN KEY (classID) REFERENCES Class(classID)
+);
+
+CREATE TABLE Event (
+    eventID SERIAL PRIMARY KEY,
+    eventName VARCHAR(100),
+    description TEXT,
+    eventDate DATE,
+    registrationDeadline DATE
+);
+
+CREATE TABLE MemberEventRegistration (
+    registrationID SERIAL PRIMARY KEY,
+    memberID INT,
+    eventID INT,
+    registrationDate DATE,
+    FOREIGN KEY (memberID) REFERENCES Member(memberID),
+    FOREIGN KEY (eventID) REFERENCES Event(eventID)
+);
+
+CREATE TABLE LoyaltyPoints (
+    transactionID SERIAL PRIMARY KEY,
+    memberID INT,
+    pointsEarned INT,
+    transactionDate DATE,
+    FOREIGN KEY (memberID) REFERENCES Member(memberID)
+);
+
+CREATE TABLE ClubResource (
+    resourceID SERIAL PRIMARY KEY,
+    resourceName VARCHAR(100),
+    resourceType VARCHAR(50),
+    quantity INT
+);
+
+CREATE TABLE RoomBooking (
+    bookingID SERIAL PRIMARY KEY,
+    memberID INT,
+    roomID INT,
+    bookingDate DATE,
+    startTime TIME,
+    endTime TIME,
+    FOREIGN KEY (memberID) REFERENCES Member(memberID),
+    FOREIGN KEY (roomID) REFERENCES ClubResource(resourceID)
+);
+
+CREATE TABLE AdminStaff (
+    staffID SERIAL PRIMARY KEY,
+    firstName VARCHAR(50),
+    lastName VARCHAR(50),
+    email VARCHAR(100) UNIQUE,
+    phoneNumber VARCHAR(20)
+);
+
+CREATE TABLE ClubActivity (
+    activityID SERIAL PRIMARY KEY,
+    adminStaffID INT,
+    activityName VARCHAR(100),
+    activityDate DATE,
+    description TEXT,
+    FOREIGN KEY (adminStaffID) REFERENCES AdminStaff(staffID)
+);
+
+CREATE TABLE Invoice (
+    invoiceID SERIAL PRIMARY KEY,
+    memberID INT,
+    issueDate DATE,
+    dueDate DATE,
+    totalAmount DECIMAL(10, 2),
+    paidAmount DECIMAL(10, 2),
+    FOREIGN KEY (memberID) REFERENCES Member(memberID)
+);
+
+CREATE TABLE Transaction (
+    transactionID SERIAL PRIMARY KEY,
+    memberID INT,
+    transactionDate DATE,
+    transactionType VARCHAR(50),
+    amount DECIMAL(10, 2),
+    FOREIGN KEY (memberID) REFERENCES Member(memberID)
+);
