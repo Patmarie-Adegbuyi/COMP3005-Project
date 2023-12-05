@@ -1,0 +1,73 @@
+-- Insert a new member
+INSERT INTO Member (firstName, lastName, email, password, date_of_birth, gender, phoneNumber)
+VALUES ('Max', 'Verstappen', 'max.verstappen@gmail.com', 'password123', '1990-01-01', 'Male', '+1234567890');
+
+-- Update member profile/information
+UPDATE Member
+SET phoneNumber = '+9876543210', password = 'newPassword'
+WHERE memberID = 1;
+
+-- Set fitness goals for a member
+INSERT INTO FitnessGoal (memberID, goalDescription, targetDate)
+VALUES (1, 'Lose 5 pounds', '2023-07-31');
+
+-- List all members in a class
+SELECT M.firstName, M.lastName
+FROM Member M
+JOIN MemberClassRegistration MCR ON M.memberID = MCR.memberID
+JOIN Class C ON MCR.classID = C.classID
+WHERE C.className = 'Yoga Class';
+
+-- Retrieve health metrics for a member
+SELECT *
+FROM HealthMetrics
+WHERE memberID = 1;
+
+-- Schedule a training session
+INSERT INTO TrainingSession (memberID, trainerID, sessionDate, durationMinutes, sessionNotes)
+VALUES (1, 2, '2023-05-15 10:00:00', 60, 'Strength training session');
+
+-- List trainers and their sessions
+SELECT T.firstName, T.lastName, TS.sessionDate, TS.durationMinutes, TS.sessionNotes
+FROM Trainer T
+JOIN TrainingSession TS ON T.trainerID = TS.trainerID;
+
+-- Register a member for an event
+INSERT INTO MemberEventRegistration (memberID, EventID, registrationDate)
+VALUES (1, 3, '2023-07-01');
+
+-- List members registered for an event
+SELECT M.firstName, M.lastName, E.EventName, MER.registrationDate
+FROM Member M
+JOIN MemberEventRegistration MER ON M.memberID = MER.memberID
+JOIN Event E ON MER.EventID = E.EventID
+WHERE E.EventName = 'Fitness Workshop';
+
+-- Record the loyalty points a member earns after a transaction
+INSERT INTO LoyaltyPoints (memberID, pointsEarned, transactionDate)
+VALUES (1, 50, '2023-09-15');
+
+-- List Club Activities managed by an admin staff
+SELECT A.activityName, A.activityDate, ADS.firstName, ADS.lastName
+FROM ClubActivity A
+JOIN AdminStaff ADS ON A.adminStaffID = ADS.staffID;
+
+-- Update club resource quantity
+UPDATE ClubResource
+SET quantity = 20
+WHERE resourceName = 'Yoga Mats';
+
+-- Generate an invoice for a member
+INSERT INTO Invoice (memberID, issueDate, dueDate, totalAmount, paidAmount)
+VALUES (1, '2023-11-07', '2023-11-21', 50.00, 0.00);
+
+-- List unpaid invoices
+SELECT M.firstName, M.lastName, I.issueDate, I.dueDate, I.totalAmount, I.paidAmount
+FROM Member M
+JOIN Invoice I ON M.memberID = I.memberID
+WHERE I.paidAmount = 0.00;
+
+-- Update payment status for an invoice
+UPDATE Invoice
+SET paidAmount = 50.00
+WHERE invoiceID = 1;
