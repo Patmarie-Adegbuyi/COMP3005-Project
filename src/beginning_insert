@@ -1,0 +1,132 @@
+INSERT INTO Member (firstName, lastName, email, password, date_of_birth, gender, phoneNumber)
+VALUES
+  ('Jack', 'Donnelly', 'jack.donnelly@example.com', 'password123', '1990-01-01', 'Male', '+1234567890'),
+  ('Alice', 'Cooper', 'alice.cooper@example.com', 'securepass', '1985-05-15', 'Female', '+9876543210'),
+  ('Bob', 'Johnson', 'bob.johnson@example.com', 'secretword', '1988-08-20', 'Male', '+1112233445'),
+  ('Ava', 'Davis', 'ava.davis@example.com', 'mypassword', '1992-03-10', 'Female', '+9988776655'),
+  ('Ethan', 'Brown', 'ethan.brown@example.com', 'pass123', '1980-12-05', 'Male', '+1122334455'),
+  ('Emily', 'Martinez', 'emily.martinez@example.com', 'ilovegym', '1995-07-25', 'Female', '+3344556677');
+
+INSERT INTO FitnessGoal (memberID, goalDescription, targetDate)
+VALUES
+  (1, 'Lose 10 pounds', '2023-06-30'),
+  (2, 'Gain muscle mass', '2023-07-15'),
+  (3, 'Improve flexibility', '2023-08-01'),
+  (4, 'Run a marathon', '2023-09-20'),
+  (5, 'Build core strength', '2023-10-10'),
+  (6, 'Achieve weight maintenance', '2023-11-30');
+
+INSERT INTO HealthMetrics (memberID, weight, height, bmi, bodyFatPercentage, measurementDate)
+VALUES
+  (1, 70.5, 175.0, 23.0, 18.5, '2023-01-15'),
+  (2, 65.0, 160.0, 25.4, 22.0, '2023-02-20'),
+  (3, 80.2, 182.0, 24.3, 20.5, '2023-03-25'),
+  (4, 55.8, 160.0, 21.8, 16.8, '2023-04-30'),
+  (5, 90.0, 185.0, 26.3, 25.0, '2023-05-10'),
+  (6, 62.5, 168.0, 22.1, 19.0, '2023-06-15');
+
+INSERT INTO Trainer (firstName, lastName, email, phoneNumber)
+VALUES
+  ('Amy', 'Johnson', 'amy.johnson@gmail.com', '+1234567890'),
+  ('Brandon', 'Smith', 'brandon.smith@gmail.com', '+9876543210'),
+  ('Caleb', 'Turner', 'caleb.turner@gmail.com', '+1112233445');
+
+INSERT INTO TrainingSession (memberID, trainerID, sessionDate, durationMinutes, sessionNotes)
+VALUES
+  (1, 2, '2023-07-01 10:00:00', 60, 'Strength training session'),
+  (2, 1, '2023-07-02 15:30:00', 45, 'Cardio workout'),
+  (3, 3, '2023-07-03 12:00:00', 90, 'Yoga and meditation'),
+  (4, 2, '2023-07-04 09:00:00', 60, 'Running drills'),
+  (5, 1, '2023-07-05 18:00:00', 75, 'Core workout'),
+  (6, 3, '2023-07-06 14:30:00', 60, 'Functional training');
+
+INSERT INTO Class (className, description, scheduleDay, startTime, endTime)
+VALUES
+  ('Yoga Class', 'Gentle yoga for all levels', 'Monday', '18:00:00', '19:00:00'),
+  ('Spin Class', 'High-intensity cycling workout', 'Wednesday', '15:30:00', '16:30:00'),
+  ('Bootcamp', 'Full-body workout with cardio and strength training', 'Friday', '17:00:00', '18:00:00'),
+  ('Pilates Class', 'Focus on core strength and flexibility', 'Tuesday', '19:30:00', '20:30:00'),
+  ('Zumba Fitness', 'Dance-based fitness class', 'Thursday', '16:00:00', '17:00:00'),
+  ('CrossFit', 'Functional movements at high intensity', 'Saturday', '10:00:00', '11:30:00');
+
+INSERT INTO MemberClassRegistration (memberID, ClassID, registrationDate)
+VALUES
+  (1, 1, '2023-07-01'),
+  (2, 2, '2023-07-02'),
+  (3, 3, '2023-07-03'),
+  (4, 4, '2023-07-04'),
+  (5, 5, '2023-07-05'),
+  (6, 6, '2023-07-06');
+
+INSERT INTO Event (eventName, description, eventDate, registrationDeadline)
+VALUES
+  ('Fitness Workshop', 'Nutrition and workout tips', '2023-08-01', '2023-07-15'),
+  ('Running Club Meetup', 'Group run and training tips', '2023-08-10', '2023-07-25'),
+  ('Yoga Retreat', 'Weekend yoga retreat in nature', '2023-09-01', '2023-08-15');
+
+INSERT INTO MemberEventRegistration (memberID, eventID, registrationDate)
+VALUES
+  (1, 1, '2023-07-10'),
+  (2, 2, '2023-07-12'),
+  (3, 3, '2023-07-15'),
+  (4, 1, '2023-07-18'),
+  (5, 2, '2023-07-20'),
+  (6, 3, '2023-07-25');
+
+INSERT INTO LoyaltyPoints (memberID, pointsEarned, transactionDate)
+VALUES
+  (1, 20, '2023-07-05'),
+  (2, 15, '2023-07-10'),
+  (3, 30, '2023-07-15'),
+  (4, 25, '2023-07-20'),
+  (5, 10, '2023-07-25'),
+  (6, 5, '2023-07-30');
+
+INSERT INTO ClubResource (resourceName, resourceType, quantity)
+VALUES
+  ('Treadmills', 'Cardio Equipment', 10),
+  ('Dumbbells', 'Strength Equipment', 200),
+  ('Yoga Mats', 'Fitness Accessories', 50),
+  ('Spin Bikes', 'Cardio Equipment', 15),
+  ('Resistance Bands', 'Fitness Accessories', 100),
+  ('Kettlebells', 'Strength Equipment', 50);
+
+INSERT INTO RoomBooking (memberID, roomID, startTime, endTime)
+VALUES
+  (1, 1,'10:00:00'::TIME, '11:00:00'::TIME),
+  (2, 2,'15:30:00'::TIME, '16:30:00'::TIME),
+  (3, 3,'12:00:00'::TIME, '13:30:00'::TIME),
+  (4, 1,'09:00:00'::TIME, '10:00:00'::TIME),
+  (5, 2,'18:00:00'::TIME, '19:00:00'::TIME),
+  (6, 3,'14:30:00'::TIME, '15:30:00'::TIME);
+
+INSERT INTO AdminStaff (firstName, lastName, email, phoneNumber)
+VALUES
+  ('Jordan', 'Taylor', 'jordan.taylor@gmail.com', '+1112223334'),
+  ('Olivia', 'Williams', 'olivia.williams@gmail.com', '+5556667778');
+
+INSERT INTO ClubActivity (adminStaffID, activityName, activityDate, description)
+VALUES
+  (1, 'Yoga Session', '2023-08-15', 'Relaxing yoga session for all levels'),
+  (2, 'HIIT Workout', '2023-08-20', 'High-Intensity Interval Training for fitness enthusiasts'),
+  (1, 'Zumba Party', '2023-08-25', 'Dance and fitness party with Zumba'),
+  (2, 'Nutrition Workshop', '2023-09-05', 'Learn about healthy nutrition habits'),
+  (1, 'Outdoor Bootcamp', '2023-09-10', 'Outdoor fitness bootcamp in the park');
+
+INSERT INTO Invoice (memberID, issueDate, dueDate, totalAmount, paidAmount)
+VALUES
+  (1, '2023-08-01', '2023-08-15', 30.00, 0.00),
+  (2, '2023-08-02', '2023-08-16', 45.00, 0.00),
+  (3, '2023-08-03', '2023-08-17', 20.00, 0.00),
+  (4, '2023-08-04', '2023-08-18', 60.00, 0.00),
+  (5, '2023-08-05', '2023-08-19', 40.00, 0.00),
+  (6, '2023-08-06', '2023-08-20', 55.00, 0.00);
+
+INSERT INTO Transaction (memberID, transactionDate, transactionType, amount)
+VALUES
+  (1, '2023-08-01', 'Membership Fee', 50.00),
+  (2, '2023-08-02', 'Class Registration', 25.00),
+  (3, '2023-08-03', 'Product Purchase', 15.00),
+  (4, '2023-08-04', 'Membership Fee', 50.00),
+  (5, '2023-08-05', 'Class Registration', 30.00),
+  (6, '2023-08-06', 'Membership Fee', 60.00);
